@@ -1,7 +1,6 @@
 import { config as loadDotenv } from 'dotenv';
 loadDotenv({ override: true, quiet: true });
 
-
 const REQUIRED_ENV_VARS = {
     BASE_URL: 'string',
     ENABLE_FEATURE_X: 'boolean',

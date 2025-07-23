@@ -1,5 +1,5 @@
 import { Page, Locator, expect } from '@playwright/test';
-import { BasePage } from '../BasePage';
+import { BasePage } from '../basePage/BasePage';
 
 export class DayCell extends BasePage {
     public readonly dayCell: Locator;

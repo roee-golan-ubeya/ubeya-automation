@@ -1,7 +1,7 @@
 import { test } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage';
 import { testConfig } from '../config/initConfig';
-import { SideBarComponent } from '../pages/components/SideBar';
+import { SideBarComponent } from '../pages/basePage/SideBarComponent';
 import { SchedulingPage } from '../pages/schedulingPage/SchedulingPage';
 
 test('get started link', async ({ page }) => {
@@ -17,7 +17,7 @@ test('get started link', async ({ page }) => {
   await page.goto(testConfig.BASE_URL);
   await loginPage.login(EMAIL, PASSWORD);
 
-  await sideBarComponent.schedulingButton.click();
+  await schedulingPage.sideBarComponent.clickSchedulingButton();
   const dayCell = await schedulingPage.getCellByDay(DAY);
   await dayCell.clickPlusButton();
 

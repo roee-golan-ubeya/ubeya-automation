@@ -1,5 +1,5 @@
 import { Page, Locator, expect } from '@playwright/test';
-import { BasePage } from './BasePage';
+import { BasePage } from './basePage/BasePage';
 
 export class LoginPage extends BasePage {
     private readonly emailInput: Locator;
@@ -18,11 +18,5 @@ export class LoginPage extends BasePage {
         await this.passwordInput.fill(password);
         await this.loginButton.click();
         await this.page.waitForLoadState('load');
-    }
-
-    async verifyLoginPageLoaded(): Promise<void> {
-        await expect(this.emailInput).toBeVisible();
-        await expect(this.passwordInput).toBeVisible();
-        await expect(this.loginButton).toBeVisible();
     }
 }
