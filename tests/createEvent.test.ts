@@ -1,8 +1,7 @@
 import { test } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage';
-import { testConfig } from '../config/initConfig';
 import { SchedulingPage } from '../pages/schedulingPage/SchedulingPage';
-import { CreateEventModal } from '../pages/schedulingPage/CreateEventModal';
+import { CreateEventModal } from '../pages/schedulingPage/components/CreateEventModal';
 
 test('Create event', async ({ page }) => {
   const EMAIL = 'roeeg@ubeya.com';
@@ -13,8 +12,8 @@ test('Create event', async ({ page }) => {
   const loginPage = new LoginPage(page);
   const schedulingPage = new SchedulingPage(page);
   const createEventModal = new CreateEventModal(page);
-  await page.goto(testConfig.BASE_URL);
 
+  await loginPage.gotoBaseUrl();
   await loginPage.login(EMAIL, PASSWORD);
 
   await schedulingPage.sideBarComponent.clickSchedulingButton();
@@ -22,15 +21,10 @@ test('Create event', async ({ page }) => {
   const dayCell = await schedulingPage.getCellByDay(DAY);
   await dayCell.clickPlusButton();
 
-  await page.getByTestId('event-name-input-field').fill(EVENT_NAME);
-  await page.getByTestId('location-select-field').click();
-  await page.locator("[data-testid*='select-option']").first().click();
-
-  await page.getByTestId("next-step-button").click();
-  await page.getByTestId("add-button").click();
+  await createEventModal.fillEventName(EVENT_NAME);
+  await createEventModal.selectFirstLocation();
+  await createEventModal.clickNextStep();
+  await createEventModal.clickAdd();
 
   await dayCell.validateEventExists(EVENT_NAME);
-  await dayCell.clickFirstEvent();
-
-  await page.waitForTimeout(10000)
 });

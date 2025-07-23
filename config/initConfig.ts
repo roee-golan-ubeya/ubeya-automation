@@ -3,8 +3,8 @@ loadDotenv({ override: true, quiet: true });
 
 const REQUIRED_ENV_VARS = {
     BASE_URL: 'string',
-    ENABLE_FEATURE_X: 'boolean',
     HEADLESS: 'boolean',
+    WORKERS: 'number',
     VIEWPORT_WIDTH: 'number',
     VIEWPORT_HEIGHT: 'number',
 } as const satisfies Record<string, 'string' | 'number' | 'boolean'>;

@@ -1,25 +1,14 @@
 import { Page, Locator } from '@playwright/test';
-import { DayCell } from './DayCell';
+import { DayCell } from './components/DayCell';
 import { MainPage } from '../mainPage/MainPage';
 
 export class SchedulingPage extends MainPage {
     public readonly calendarDaysCells: DayCell[];
     private readonly calendarDaysCellElements: Locator;
 
-    // public readonly plusButton: Locator;
-    // public readonly eventNameInput: Locator;
-    // public readonly locationSelect: Locator;
-    // public readonly locationOptions: Locator;
-    // public readonly calendarContainer: Locator;
-
     constructor(page: Page) {
         super(page);
         this.calendarDaysCellElements = this.page.locator('[data-testid="month-view-cell"]');
-        // this.plusButton = this.getElementByDataTestId('plus-button');
-        // this.eventNameInput = this.getElementByDataTestId('event-name-input-field');
-        // this.locationSelect = this.getElementByDataTestId('location-select-field');
-        // this.locationOptions = this.page.locator("[data-testid*='location-select-option']");
-        // this.calendarContainer = this.page.locator('[data-testid*="calendar"], .calendar');
     }
 
     async getAllCalendarDays(): Promise<DayCell[]> {

@@ -12,6 +12,10 @@ export class BasePage {
         await this.page.goto(url);
     }
 
+    async gotoBaseUrl(): Promise<void> {
+        await this.goto(process.env.BASE_URL!);
+    }
+
     getElementByDataTestId(testId: string): Locator {
         return this.page.getByTestId(testId);
     }

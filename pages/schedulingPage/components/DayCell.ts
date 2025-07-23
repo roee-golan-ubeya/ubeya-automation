@@ -1,5 +1,5 @@
 import { Page, Locator, expect } from '@playwright/test';
-import { MainPage } from '../mainPage/MainPage';
+import { MainPage } from '../../mainPage/MainPage';
 
 export class DayCell extends MainPage {
     public readonly dayCell: Locator;
@@ -26,7 +26,7 @@ export class DayCell extends MainPage {
 
     async validateEventExists(eventName: string): Promise<void> {
         const eventElement = this.dayCell.getByText(eventName).first();
-        await expect(eventElement).toBeVisible();
+        await expect(eventElement, `Event "${eventName}" is not visible in the day cell`).toBeVisible();
     }
 
 }
