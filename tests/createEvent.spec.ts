@@ -1,23 +1,24 @@
 import { test } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage';
 import { testConfig } from '../config/initConfig';
-import { SideBarComponent } from '../pages/basePage/SideBarComponent';
 import { SchedulingPage } from '../pages/schedulingPage/SchedulingPage';
+import { CreateEventModal } from '../pages/schedulingPage/CreateEventModal';
 
-test('get started link', async ({ page }) => {
+test('Create event', async ({ page }) => {
   const EMAIL = 'roeeg@ubeya.com';
   const PASSWORD = '12345678';
   const EVENT_NAME = 'Test Event';
   const DAY = 15;
 
   const loginPage = new LoginPage(page);
-  const sideBarComponent = new SideBarComponent(page);
   const schedulingPage = new SchedulingPage(page);
-
+  const createEventModal = new CreateEventModal(page);
   await page.goto(testConfig.BASE_URL);
+
   await loginPage.login(EMAIL, PASSWORD);
 
   await schedulingPage.sideBarComponent.clickSchedulingButton();
+
   const dayCell = await schedulingPage.getCellByDay(DAY);
   await dayCell.clickPlusButton();
 

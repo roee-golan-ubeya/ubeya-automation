@@ -1,24 +1,15 @@
 import { Page, Locator } from '@playwright/test';
 import { SideBarComponent } from './SideBarComponent';
 import { HeaderComponent } from './headerComponent';
+import { BasePage } from '../BasePage';
 
-export class BasePage {
-    protected page: Page;
+export class MainPage extends BasePage {
     public readonly sideBarComponent: SideBarComponent;
     public readonly headerComponent: HeaderComponent;
 
-
     constructor(page: Page) {
-        this.page = page;
+        super(page);
         this.sideBarComponent = new SideBarComponent(page);
         this.headerComponent = new HeaderComponent(page);
-    }
-
-    async goto(url: string): Promise<void> {
-        await this.page.goto(url);
-    }
-
-    getElementByDataTestId(testId: string): Locator {
-        return this.page.getByTestId(testId);
     }
 }

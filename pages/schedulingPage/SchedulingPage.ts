@@ -1,9 +1,8 @@
-import { Page, Locator, expect } from '@playwright/test';
-import { BasePage } from '../basePage/BasePage';
+import { Page, Locator } from '@playwright/test';
 import { DayCell } from './DayCell';
+import { MainPage } from '../mainPage/MainPage';
 
-export class SchedulingPage extends BasePage {
-    // Calendar related locators
+export class SchedulingPage extends MainPage {
     public readonly calendarDaysCells: DayCell[];
     private readonly calendarDaysCellElements: Locator;
 

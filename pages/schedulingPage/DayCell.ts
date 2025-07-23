@@ -1,7 +1,7 @@
 import { Page, Locator, expect } from '@playwright/test';
-import { BasePage } from '../basePage/BasePage';
+import { MainPage } from '../mainPage/MainPage';
 
-export class DayCell extends BasePage {
+export class DayCell extends MainPage {
     public readonly dayCell: Locator;
     public readonly plusButton: Locator;
 
